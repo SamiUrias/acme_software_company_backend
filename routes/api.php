@@ -35,7 +35,7 @@ Route::get('/search', function (Request $request){
     ]);
 
     $statusCode = $response->getStatusCode();
-    $content = $response->getBody();
-    return $content;
-    return 'Hello World';
+    $content = $response->getBody()->getContents();
+    $content = json_decode($content)->data;
+    return response()->json($content);
 });
