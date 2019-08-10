@@ -15550,15 +15550,15 @@ var app = new vue__WEBPACK_IMPORTED_MODULE_0___default.a({
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 var Home = function Home() {
-  return Promise.all(/*! import() */[__webpack_require__.e(0), __webpack_require__.e(1)]).then(__webpack_require__.bind(null, /*! ./components/Home */ "./resources/js/components/Home.vue"));
+  return Promise.all(/*! import() */[__webpack_require__.e(0), __webpack_require__.e(3)]).then(__webpack_require__.bind(null, /*! ./components/Home */ "./resources/js/components/Home.vue"));
 };
 
 var About = function About() {
-  return __webpack_require__.e(/*! import() */ 2).then(__webpack_require__.bind(null, /*! ./components/About */ "./resources/js/components/About.vue"));
+  return __webpack_require__.e(/*! import() */ 1).then(__webpack_require__.bind(null, /*! ./components/About */ "./resources/js/components/About.vue"));
 };
 
 var NotFound = function NotFound() {
-  return __webpack_require__.e(/*! import() */ 3).then(__webpack_require__.bind(null, /*! ./components/NotFound */ "./resources/js/components/NotFound.vue"));
+  return __webpack_require__.e(/*! import() */ 2).then(__webpack_require__.bind(null, /*! ./components/NotFound */ "./resources/js/components/NotFound.vue"));
 };
 
 /* harmony default export */ __webpack_exports__["default"] = ({
