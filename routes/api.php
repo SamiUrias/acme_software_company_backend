@@ -1,6 +1,8 @@
 <?php
 
 use Illuminate\Http\Request;
+use Illuminate\Routing\UrlGenerator;
+use Illuminate\Support\Facades\Auth;
 
 /*
 |--------------------------------------------------------------------------
@@ -16,6 +18,12 @@ use Illuminate\Http\Request;
 Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
 });
+
+
+Route::get('/validate-token', function () {
+    return ['data' => 'Token is valid'];
+})->middleware('auth:api');
+
 
 Route::get('/search', function (Request $request){
     $endpoint = 'https://api.giphy.com/v1/gifs/search';
@@ -38,4 +46,16 @@ Route::get('/search', function (Request $request){
     $content = $response->getBody()->getContents();
     $content = json_decode($content)->data;
     return response()->json($content);
+});
+
+Route::get('/private-search', 'SearchController@search')->middleware('auth:api');
+
+
+Route::post('/login', 'API\UserController@login');
+Route::post('/register', 'API\UserController@register');
+Route::post('/logout', 'API\UserController@logout')->middleware('auth:api');;
+
+
+Route::group(['middleware' => 'auth:api'], function(){
+    Route::post('details', 'API\UserController@details');
 });
