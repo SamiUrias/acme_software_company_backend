@@ -78,7 +78,6 @@
                     if(!data.error) {
                         gifsResponse = data.gifs
                     }
-                     // gifsResponse = await axios.get(this.privateEndpoint, {params: {q: this.searchText}, headers:headers})
                 }
 
                 console.log(gifsResponse);
