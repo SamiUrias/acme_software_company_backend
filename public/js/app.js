@@ -19351,6 +19351,10 @@ var Register = function Register() {
   return __webpack_require__.e(/*! import() */ 0).then(__webpack_require__.bind(null, /*! ./components/Register */ "./resources/js/components/Register.vue"));
 };
 
+var History = function History() {
+  return __webpack_require__.e(/*! import() */ 2).then(__webpack_require__.bind(null, /*! ./components/History */ "./resources/js/components/History.vue"));
+};
+
 /* harmony default export */ __webpack_exports__["default"] = ({
   mode: 'history',
   routes: [{
@@ -19368,6 +19372,9 @@ var Register = function Register() {
   }, {
     path: '/register',
     component: Register
+  }, {
+    path: '/history',
+    component: History
   }]
 });
 

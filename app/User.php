@@ -50,4 +50,8 @@ class User extends Authenticatable
             'search' => $search,
         ]);
     }
+
+    public function getHistory(){
+        return UserSearchHistory::where('user_id', $this->id)->orderBy('id', 'desc')->get();
+    }
 }

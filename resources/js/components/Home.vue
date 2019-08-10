@@ -64,7 +64,7 @@
 
                 if(this.$store.getters.authToken) {
                     console.log('Authenticated')
-                    let data  = await getGifs(this.endpoint, {params: {q: this.searchText}, headers:headers});
+                    let data  = await getGifs(this.privateEndpoint, {params: {q: this.searchText}, headers:headers});
                     if(!data.error) {
                         gifsResponse = data.gifs
                     } else {

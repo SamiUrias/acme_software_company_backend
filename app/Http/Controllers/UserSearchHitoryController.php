@@ -14,7 +14,7 @@ class UserSearchHitoryController extends Controller
      */
     public function index()
     {
-        //
+        $histories = UserSearchHistory::all();
     }
 
     /**
@@ -46,7 +46,7 @@ class UserSearchHitoryController extends Controller
      */
     public function show($id)
     {
-        //
+
     }
 
     /**

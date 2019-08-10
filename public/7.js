@@ -134,7 +134,7 @@ function () {
 
                 console.log('Authenticated');
                 _context2.next = 9;
-                return getGifs(this.endpoint, {
+                return getGifs(this.privateEndpoint, {
                   params: {
                     q: this.searchText
                   },

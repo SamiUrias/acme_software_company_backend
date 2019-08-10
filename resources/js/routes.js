@@ -3,6 +3,7 @@ let About = () => import ("./components/About");
 let NotFound = () => import("./components/NotFound");
 let SingIn = () => import("./components/SignIn");
 let Register = () => import("./components/Register");
+let History = () => import("./components/History");
 
 export default {
     mode: 'history',
@@ -26,6 +27,10 @@ export default {
         {
             path: '/register',
             component: Register
+        },
+        {
+            path: '/history',
+            component: History
         }
     ]
 }
