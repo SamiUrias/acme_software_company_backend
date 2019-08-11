@@ -8,6 +8,7 @@ To run this program is necessary to follow this steps
 1. Download the code from the repository ( If you get the code from the repository )
 2. Verify that you have the code in a folder.
 
+3. Create a new database to work with your project. This project was developed using MariaDb
 3. Edit or create a .env file with all your configuration, this project only use the database configuration, then
 put in that file your database configuration.
 

@@ -1,10 +1,10 @@
 // let Home = () => import ("./components/Home");
 import Home from './components/Home'
-let About = () => import ("./components/About");
-let NotFound = () => import("./components/NotFound");
-let SingIn = () => import("./components/SignIn");
-let Register = () => import("./components/Register");
-let History = () => import("./components/History");
+import About from "./components/About";
+import NotFound  from "./components/NotFound";
+import SignIn from "./components/SignIn";
+import Register from "./components/Register";
+import History from "./components/History";
 import Favorites from "./components/Favorites";
 
 export default {
@@ -24,7 +24,7 @@ export default {
         },
         {
             path: '/sign-in',
-            component: SingIn
+            component: SignIn
         },
         {
             path: '/register',
