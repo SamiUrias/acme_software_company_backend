@@ -57,6 +57,7 @@ Route::post('/logout', 'API\UserController@logout')->middleware('auth:api');;
 
 
 Route::group(['middleware' => 'auth:api'], function(){
-    Route::post('details', 'API\UserController@details');
     Route::get('/user/history', 'API\UserController@userHistory');
+    Route::get('/user/favorites', 'API\UserController@userFavorites');
+    Route::post('/user/favorites/{id}', 'API\UserController@toggleFavorites');
 });

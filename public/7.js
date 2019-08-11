@@ -46,6 +46,9 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
+//
+//
+//
 
 
 
@@ -217,6 +220,8 @@ var render = function() {
       "div",
       { staticClass: "row mb-3", staticStyle: { border: "1px solid blue" } },
       [
+        _c("div", [_vm._v("Here")]),
+        _vm._v(" "),
         _c("div", { staticClass: "col text-center" }, [
           _c("input", {
             directives: [
@@ -263,13 +268,30 @@ var render = function() {
               "div",
               { staticClass: "card-columns" },
               _vm._l(_vm.gifsList, function(gif, index) {
-                return _c("div", { staticClass: "card" }, [
-                  _c("img", {
-                    key: index,
-                    staticClass: "card-img",
-                    attrs: { src: gif.images.downsized_still.url, alt: "" }
-                  })
-                ])
+                return _c(
+                  "div",
+                  { staticClass: "card" },
+                  [
+                    _c("font-awesome-icon", {
+                      attrs: { icon: ["fas", "heart"] }
+                    }),
+                    _vm._v(" "),
+                    _c("font-awesome-icon", {
+                      attrs: { icon: ["fas", "heart"] }
+                    }),
+                    _vm._v(" "),
+                    _c("font-awesome-icon", {
+                      attrs: { icon: ["far", "use"] }
+                    }),
+                    _vm._v(" "),
+                    _c("img", {
+                      key: index,
+                      staticClass: "card-img",
+                      attrs: { src: gif.images.downsized_still.url, alt: "" }
+                    })
+                  ],
+                  1
+                )
               }),
               0
             )

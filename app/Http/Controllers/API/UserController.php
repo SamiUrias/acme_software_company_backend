@@ -8,6 +8,7 @@ use Illuminate\Support\Facades\Auth;
 class UserController extends Controller
 {
     public $successStatus = 200;
+
     /**
      * login api
      *
@@ -39,9 +40,6 @@ class UserController extends Controller
             'confirmPassword' => 'required|same:password',
         ]);
 
-//        if ($validator->fails()) {
-//            return response()->json(['error'=>$validator->errors()], 401);
-//        }
         $input = $request->all();
         $input['password'] = bcrypt($input['password']);
         $user = User::create($input);
@@ -58,20 +56,18 @@ class UserController extends Controller
         ]);
     }
 
-
-    /**
-     * details api
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function details()
-    {
-        $user = Auth::user();
-        return response()->json(['success' => $user], $this-> successStatus);
-    }
-
     public function userHistory(){
         $user = Auth::user();
         return $user->getHistory();
+    }
+
+    public function userFavorites(){
+        $user = Auth::user();
+        return $user->getFavorites();
+    }
+
+    public function toggleFavorites(Request $request, $id){
+        $user = Auth::user();
+        return $user->toggleFavorite($id);
     }
 }

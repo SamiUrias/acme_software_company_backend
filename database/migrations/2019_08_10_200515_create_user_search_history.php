@@ -28,6 +28,6 @@ class CreateUserSearchHistory extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('user_search_history');
+        Schema::dropIfExists('user_search_histories');
     }
 }

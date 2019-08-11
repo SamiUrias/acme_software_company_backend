@@ -1,4 +1,5 @@
-let Home = () => import ("./components/Home");
+// let Home = () => import ("./components/Home");
+import Home from './components/Home'
 let About = () => import ("./components/About");
 let NotFound = () => import("./components/NotFound");
 let SingIn = () => import("./components/SignIn");

@@ -336,49 +336,6 @@ __webpack_require__.r(__webpack_exports__);
 
 
 
-/***/ }),
-
-/***/ "./resources/js/components/functions/cookieFunctions.js":
-/*!**************************************************************!*\
-  !*** ./resources/js/components/functions/cookieFunctions.js ***!
-  \**************************************************************/
-/*! exports provided: getCookie, setCookie, eraseCookie */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "getCookie", function() { return getCookie; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "setCookie", function() { return setCookie; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "eraseCookie", function() { return eraseCookie; });
-var getCookie = function getCookie(cname) {
-  var name = cname + "=";
-  var decodedCookie = decodeURIComponent(document.cookie);
-  var ca = decodedCookie.split(';');
-
-  for (var i = 0; i < ca.length; i++) {
-    var c = ca[i];
-
-    while (c.charAt(0) == ' ') {
-      c = c.substring(1);
-    }
-
-    if (c.indexOf(name) == 0) {
-      return c.substring(name.length, c.length);
-    }
-  }
-
-  return "";
-};
-var setCookie = function setCookie(cname, cvalue, exdays) {
-  var d = new Date();
-  d.setTime(d.getTime() + exdays * 24 * 60 * 60 * 1000);
-  var expires = "expires=" + d.toUTCString();
-  document.cookie = cname + "=" + cvalue + ";" + expires + ";path=/";
-};
-var eraseCookie = function eraseCookie(cname) {
-  document.cookie = cname + '=; Max-Age=-99999999;';
-};
-
 /***/ })
 
 }]);

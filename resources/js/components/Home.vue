@@ -1,7 +1,7 @@
 <template>
     <span>
 
-        <div class="row mb-3" style="border: 1px solid blue">
+        <div class="row mb-3">
             <div class="col text-center" >
                 <input type="text" v-model="searchText" placeholder="Search" v-on:keyup.enter="searchGifs">
                 <input type="button" value="Search" @click="searchGifs">
@@ -13,7 +13,11 @@
             <div class="col">
                 <div v-if="gifsList.length" class="card-columns">
                     <div v-for="(gif, index) in gifsList" class="card">
-
+                     <span v-if="$store.getters.authToken" class="favoritesHeart" @click="toggleFavorite(gif.id)">
+                            <font-awesome-icon v-if="$store.getters.favoritesList.findIndex( element => element.favorite_id === gif.id) === -1" class="heartSize" :icon="['far', 'heart']"></font-awesome-icon>
+                            <font-awesome-icon v-else="$store.getters.favoritesList.indexOf(gif.id) == -1" class="heartSize" :icon="['fas', 'heart']"></font-awesome-icon>
+                     </span>
+<!--                        {{ gif.id }}-->
                         <img class="card-img" :src="gif.images.downsized_still.url"
                              :key="index" alt="">
                     </div>
@@ -46,6 +50,9 @@
                 endpoint: 'http://localhost:8000/api/search', // This thing should came from the .env file,
                 privateEndpoint: 'http://localhost:8000/api/private-search'
             }
+        },
+        mounted(){
+            this.$store.dispatch('getFavoritesList');
         },
         methods: {
             async searchGifs() {
@@ -83,11 +90,33 @@
                 console.log(gifsResponse);
                 console.log(gifsResponse.data);
                 this.gifsList = gifsResponse.data;
+            },
+
+            toggleFavorite(id) {
+                this.$store.dispatch('toggleFavorite', id);
             }
         },
     }
 </script>
 
 <style scoped>
+    .favoritesHeart {
+        background-color: rgba(0, 0, 0, 0.2);
+        border-bottom-right-radius: .5em;
+        color: #ffffff;
+        cursor: pointer;
+        font-weight: bolder;
+        height: 40px;
+        letter-spacing: 0.1em;
+        padding: .1em .1em .1em .3em;
+        position: absolute;
+        left: 1px;
+        text-shadow: 1px 1px black;
+        top: 0;
+        width: 40px;
+    }
 
+    .heartSize {
+        font-size: 2em;
+    }
 </style>

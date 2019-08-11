@@ -43,6 +43,10 @@ class User extends Authenticatable
         return $this->hasMany(UserSearchHistory::class);
     }
 
+    public function favorites(){
+        return $this->hasMany(UserFavorites::class);
+    }
+
     public function addSearchHistory($search)
     {
         return UserSearchHistory::create([
@@ -53,5 +57,31 @@ class User extends Authenticatable
 
     public function getHistory(){
         return UserSearchHistory::where('user_id', $this->id)->orderBy('id', 'desc')->get();
+    }
+
+    public function getFavorites() {
+        return UserFavorites::where('user_id', $this->id)->get();
+    }
+
+    public function addFavorite($favorite_id){
+        if ((UserFavorites::where('favorite_id', $favorite_id)->where('user_id', $this->id)->count() == 0) ) {
+            return UserFavorites::create([
+                'user_id' => $this->id,
+                'favorite_id' => $favorite_id,
+            ]);
+        }
+    }
+
+    public function deleteFavorite($favorite_id){
+        return UserFavorites::where('favorite_id', $favorite_id)->where('user_id', $this->id)->delete();
+    }
+
+    public function toggleFavorite($favorite_id) {
+        if ((UserFavorites::where('favorite_id', $favorite_id)->where('user_id', $this->id)->count() == 0) ) {
+           return $this->addFavorite($favorite_id);
+
+        } else {
+            return $this->deleteFavorite($favorite_id);
+        }
     }
 }
