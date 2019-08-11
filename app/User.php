@@ -7,6 +7,7 @@ use Illuminate\Notifications\Notifiable;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use App\UserSearchHistory;
+use App\Http\Controllers\UserFavoritesController;
 
 class User extends Authenticatable
 {
@@ -60,7 +61,12 @@ class User extends Authenticatable
     }
 
     public function getFavorites() {
-        return UserFavorites::where('user_id', $this->id)->get();
+
+        $favoritesArray = UserFavorites::where('user_id', $this->id)->get();
+        foreach ($favoritesArray as $index => $favoriteGif) {
+            $favoritesArray[$index]['data'] = UserFavoritesController::additionalData($favoriteGif->favorite_id);
+        }
+        return $favoritesArray;
     }
 
     public function addFavorite($favorite_id){

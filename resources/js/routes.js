@@ -5,6 +5,7 @@ let NotFound = () => import("./components/NotFound");
 let SingIn = () => import("./components/SignIn");
 let Register = () => import("./components/Register");
 let History = () => import("./components/History");
+import Favorites from "./components/Favorites";
 
 export default {
     mode: 'history',
@@ -32,6 +33,10 @@ export default {
         {
             path: '/history',
             component: History
+        },
+        {
+            path: '/favorites',
+            component: Favorites
         }
     ]
 }

@@ -2,7 +2,7 @@
     <span>
 
         <div class="row mb-3">
-            <div class="col text-center" >
+            <div class="col text-center">
                 <input type="text" v-model="searchText" placeholder="Search" v-on:keyup.enter="searchGifs">
                 <input type="button" value="Search" @click="searchGifs">
             </div>
@@ -14,10 +14,13 @@
                 <div v-if="gifsList.length" class="card-columns">
                     <div v-for="(gif, index) in gifsList" class="card">
                      <span v-if="$store.getters.authToken" class="favoritesHeart" @click="toggleFavorite(gif.id)">
-                            <font-awesome-icon v-if="$store.getters.favoritesList.findIndex( element => element.favorite_id === gif.id) === -1" class="heartSize" :icon="['far', 'heart']"></font-awesome-icon>
-                            <font-awesome-icon v-else="$store.getters.favoritesList.indexOf(gif.id) == -1" class="heartSize" :icon="['fas', 'heart']"></font-awesome-icon>
+                            <font-awesome-icon
+                                v-if="$store.getters.favoritesList.findIndex( element => element.favorite_id === gif.id) === -1"
+                                class="heartSize" :icon="['far', 'heart']"></font-awesome-icon>
+                            <font-awesome-icon v-else="$store.getters.favoritesList.indexOf(gif.id) == -1"
+                                               class="heartSize" :icon="['fas', 'heart']"></font-awesome-icon>
                      </span>
-<!--                        {{ gif.id }}-->
+                        <!--                        {{ gif.id }}-->
                         <img class="card-img" :src="gif.images.downsized_still.url"
                              :key="index" alt="">
                     </div>
@@ -25,19 +28,23 @@
             </div>
         </div>
 
+            <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
+              Launch demo modal
+            </button>
+
     </span>
 </template>
 
 <script>
     import axios from 'axios'
-    import { getCookie } from "./functions/cookieFunctions";
+    import {getCookie} from "./functions/cookieFunctions";
 
     const getGifs = async (endpoint, paramsObject) => {
         try {
             const gifs = await axios(endpoint, paramsObject);
-            return { gifs, error: false};
+            return {gifs, error: false};
         } catch (e) {
-            return { e, error: true};
+            return {e, error: true};
         }
     };
 
@@ -51,7 +58,7 @@
                 privateEndpoint: 'http://localhost:8000/api/private-search'
             }
         },
-        mounted(){
+        mounted() {
             this.$store.dispatch('getFavoritesList');
         },
         methods: {
@@ -63,26 +70,26 @@
                     'Content-Type': 'application/json'
                 };
 
-                if( getCookie('acmet') ) {
+                if (getCookie('acmet')) {
                     console.log('acmet');
                     headers['Authorization'] = `Bearer ${getCookie('acmet')}`;
                 }
                 let gifsResponse = null;
 
-                if(this.$store.getters.authToken) {
+                if (this.$store.getters.authToken) {
                     console.log('Authenticated')
-                    let data  = await getGifs(this.privateEndpoint, {params: {q: this.searchText}, headers:headers});
-                    if(!data.error) {
+                    let data = await getGifs(this.privateEndpoint, {params: {q: this.searchText}, headers: headers});
+                    if (!data.error) {
                         gifsResponse = data.gifs
                     } else {
-                        this.$router.push({path:'/sign-in'});
+                        this.$router.push({path: '/sign-in'});
                     }
 
                     // gifsResponse = await axios.get(this.endpoint, {params: {q: this.searchText}, headers:headers})
                 } else {
                     console.log('Not authenticated');
-                    let data  = await getGifs(this.endpoint, {params: {q: this.searchText}, headers:headers});
-                    if(!data.error) {
+                    let data = await getGifs(this.endpoint, {params: {q: this.searchText}, headers: headers});
+                    if (!data.error) {
                         gifsResponse = data.gifs
                     }
                 }
