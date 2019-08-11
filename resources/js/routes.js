@@ -35,7 +35,7 @@ export default {
             component: History
         },
         {
-            path: '/favorites',
+            path: '/favorite',
             component: Favorites
         }
     ]
