@@ -10,9 +10,7 @@ To run this program is necessary to follow this steps ( This are console Instruc
 
 3. Create a new database to work with your project. This project was developed using MariaDb
 4. Edit or create a .env file with all your configuration, this project only use the database configuration, then
-put in that file your database configuration.
-
-You can copy the .env.example to a .env if you want to start as soon as possible with default config
+put in that file your database configuration. You can copy the .env.example to a .env if you want to start as soon as possible with default config
 `cp .env.example .env`
 
 5. Run the following commands in your terminal:
