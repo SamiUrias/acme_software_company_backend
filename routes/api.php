@@ -48,6 +48,8 @@ Route::get('/search', function (Request $request){
     return response()->json($content);
 });
 
+Route::get('/private-search', 'SearchController@search')->middleware('auth:api');
+
 
 Route::post('/login', 'API\UserController@login');
 Route::post('/register', 'API\UserController@register');
@@ -55,7 +57,6 @@ Route::post('/register', 'API\UserController@register');
 
 
 Route::group(['middleware' => 'auth:api'], function(){
-    Route::post('/logout', 'API\UserController@logout');
     Route::post('/logout', 'API\UserController@logout');
     Route::get('/user/history', 'API\UserController@userHistory');
     Route::get('/user/favorites', 'API\UserController@userFavorites');

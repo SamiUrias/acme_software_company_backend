@@ -21,22 +21,26 @@
                                                class="heartSize" :icon="['fas', 'heart']"></font-awesome-icon>
                      </span>
                         <!--                        {{ gif.id }}-->
-                        <img class="card-img" :src="gif.images.downsized_still.url"
+                        <img class="card-img" :src="gif.images.downsized_still.url" @click="pictureModal(index)"
                              :key="index" alt="">
                     </div>
                 </div>
             </div>
         </div>
-
-            <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
-              Launch demo modal
-            </button>
-
+             <modal
+                 :source="modalSource"
+                 v-show="isModalVisible"
+                 @close="closeModal"
+                 @next="nextModal"
+                 @prev="prevModal"
+             />
     </span>
 </template>
 
 <script>
     import axios from 'axios'
+    import Modal from './Modal'
+
     import {getCookie} from "./functions/cookieFunctions";
 
     const getGifs = async (endpoint, paramsObject) => {
@@ -55,7 +59,10 @@
                 searchText: '',
                 gifsList: [],
                 endpoint: 'http://localhost:8000/api/search', // This thing should came from the .env file,
-                privateEndpoint: 'http://localhost:8000/api/private-search'
+                privateEndpoint: 'http://localhost:8000/api/private-search',
+                isModalVisible: false,
+                modalSource: '',
+                modalIndex: null,
             }
         },
         mounted() {
@@ -99,10 +106,44 @@
                 this.gifsList = gifsResponse.data;
             },
 
+            pictureModal(index){
+                this.modalIndex = index;
+                this.modalSource = this.gifsList[this.modalIndex].images.downsized_medium.url;
+                this.isModalVisible = true;
+            },
+            prevModal() {
+                console.log('Prev Modal')
+                if (this.modalIndex > 0) {
+                    this.modalIndex = this.modalIndex - 1;
+                } else {
+                    this.modalIndex =  this.gifsList.length -1;
+                }
+                this.modalSource = this.gifsList[this.modalIndex].images.downsized_medium.url;
+            },
+            nextModal(){
+                console.log('Next Modal')
+                if (this.modalIndex ===  (this.gifsList.length - 1 )) {
+                    this.modalIndex =  0;
+
+                } else {
+                    this.modalIndex = this.modalIndex + 1;
+                }
+                this.modalSource = this.gifsList[this.modalIndex].images.downsized_medium.url;
+            },
             toggleFavorite(id) {
                 this.$store.dispatch('toggleFavorite', id);
+            },
+
+            showModal() {
+                this.isModalVisible = true;
+            },
+            closeModal() {
+                this.isModalVisible = false;
             }
         },
+        components: {
+            Modal
+        }
     }
 </script>
 

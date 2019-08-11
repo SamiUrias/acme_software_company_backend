@@ -35,13 +35,19 @@
 </template>
 
 <script>
+
     export default {
         name: "App",
+        data(){
+            return {
+
+            }
+        },
         methods: {
             async logout(){
                 await this.$store.dispatch('logout');
                 this.$router.push({path:'sign-in'})
-            }
+            },
         }
     }
 </script>
