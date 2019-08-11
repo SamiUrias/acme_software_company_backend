@@ -24,7 +24,7 @@ You can copy the .env.example to a .env if you want to start as soon as possible
 
 
 
-After all this steps, if anything went wrong,  you should have a properly installation.
+After all these steps, If nothing goes wrong, you should have a proper installation.
 Congratulations!
 
 # Run the program
