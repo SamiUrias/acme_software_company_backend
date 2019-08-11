@@ -21,8 +21,6 @@ You can copy the .env.example to a .env if you want to start as soon as possible
 * `php artisan migrate`
 * `php artisan passport:install`
 * `php artisan key:generate`
-* `npm install`
-
 
 
 
