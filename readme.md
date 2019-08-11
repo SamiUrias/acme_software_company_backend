@@ -3,7 +3,7 @@
 ## Gift Browsing App - Acme Software Company
 
 
-#Installation
+## Installation
 To run this program is necessary to follow this steps ( This are console Instructions for linux / unix systems)
 1. Download the code from the repository ( If you get the code from the repository )
 2. Verify that you have the code in a folder.
@@ -27,7 +27,7 @@ You can copy the .env.example to a .env if you want to start as soon as possible
 After all these steps, If nothing goes wrong, you should have a proper installation.
 Congratulations!
 
-# Run the program
+## Run the program
 To run the program in localhost use the following command:
 `php artisan serve`
 
