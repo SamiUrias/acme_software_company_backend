@@ -4,7 +4,7 @@
 
 
 #Installation
-To run this program is necessary to follow this steps
+To run this program is necessary to follow this steps ( This are console Instructions for linux / unix systems)
 1. Download the code from the repository ( If you get the code from the repository )
 2. Verify that you have the code in a folder.
 
@@ -12,12 +12,18 @@ To run this program is necessary to follow this steps
 3. Edit or create a .env file with all your configuration, this project only use the database configuration, then
 put in that file your database configuration.
 
+You can copy the .env.example to a .env if you want to start as soon as possible with default config
+`cp .env.example .env`
+
 4. Run the following commands in your terminal:
 
 * `composer install`
-* `npm install`
-* `php artisan passport:install`
 * `php artisan migrate`
+* `php artisan passport:install`
+* `php artisan key:generate`
+* `npm install`
+
+
 
 
 After all this steps, if anything went wrong,  you should have a properly installation.
